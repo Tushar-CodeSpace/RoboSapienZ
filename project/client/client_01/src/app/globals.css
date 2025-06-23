@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: hsl(var(--background));
+    @apply text-foreground;
+    @apply font-body;
+}
+
+@layer base {
+    :root {
+        /* Default Theme (Dark) */
+        --background: 0 0% 0%;
+        /* Black */
+        --foreground: 0 0% 98%;
+        /* Near White */
+
+        --card: 0 0% 10%;
+        /* Dark Gray for cards */
+        --card-foreground: 0 0% 98%;
+        /* Near White */
+
+        --popover: 0 0% 10%;
+        /* Dark Gray for popovers */
+        --popover-foreground: 0 0% 98%;
+        /* Near White */
+
+        --primary: 262.1 83.3% 57.8%;
+        /* Default Primary (Deep Purple) */
+        --primary-foreground: 0 0% 98%;
+        /* Near White for contrast on primary */
+
+        --secondary: 0 0% 15%;
+        /* Dark Gray for secondary elements */
+        --secondary-foreground: 0 0% 98%;
+        /* Near White */
+
+        --muted: 0 0% 15%;
+        /* Dark Gray for muted elements */
+        --muted-foreground: 0 0% 60%;
+        /* Medium Gray for muted text on dark bg */
+
+        --accent: 262.1 83.3% 57.8%;
+        /* Default Accent (same as Primary for now) */
+        --accent-foreground: 0 0% 98%;
+        /* Near White (for contrast on Accent) */
+
+        --destructive: 0 84.2% 60.2%;
+        /* Default Red */
+        --destructive-foreground: 0 0% 98%;
+        /* Near White */
+
+        --border: 0 0% 20%;
+        /* Dark Gray Border */
+        --input: 0 0% 10%;
+        /* Dark Gray Input background */
+        --ring: 262.1 83.3% 57.8%;
+        /* Primary Ring (matches primary) */
+
+        --radius: 0.5rem;
+
+        /* Dark Sidebar colors */
+        --sidebar-background: 0 0% 7%;
+        /* Very Dark Gray / Off-black */
+        --sidebar-foreground: 0 0% 98%;
+        /* Near White */
+        --sidebar-primary: hsl(var(--primary));
+        /* Uses the default Primary */
+        --sidebar-primary-foreground: hsl(var(--primary-foreground));
+        /* Uses default Primary foreground */
+        --sidebar-accent: 0 0% 15%;
+        /* Darker Gray for hover */
+        --sidebar-accent-foreground: 0 0% 98%;
+        /* Near White */
+        --sidebar-border: 0 0% 20%;
+        /* Dark Gray Border */
+        --sidebar-ring: hsl(var(--ring));
+        /* Uses default Primary ring */
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    html {
+        background-color: hsl(var(--background));
+    }
+
+    body {
+        background-color: hsl(var(--background));
+        @apply text-foreground;
+        @apply font-body;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-headline;
+    }
+
+    /* Basic Markdown Styling */
+    .prose {
+        color: hsl(var(--foreground));
+    }
+
+    .prose h1,
+    .prose h2,
+    .prose h3,
+    .prose h4,
+    .prose h5,
+    .prose h6 {
+        @apply font-headline text-foreground mt-6 mb-3;
+    }
+
+    .prose h1 {
+        @apply text-3xl sm:text-4xl font-bold;
+    }
+
+    .prose h2 {
+        @apply text-2xl sm:text-3xl font-semibold;
+    }
+
+    .prose h3 {
+        @apply text-xl sm:text-2xl font-semibold;
+    }
+
+    .prose h4 {
+        @apply text-lg sm:text-xl font-semibold;
+    }
+
+    .prose p {
+        @apply mb-4 text-base leading-relaxed;
+    }
+
+    .prose a {
+        @apply text-accent hover:underline;
+    }
+
+    .prose strong {
+        @apply font-bold;
+    }
+
+    .prose em {
+        @apply italic;
+    }
+
+    .prose ul,
+    .prose ol {
+        @apply mb-4 pl-6;
+    }
+
+    .prose ul {
+        @apply list-disc;
+    }
+
+    .prose ol {
+        @apply list-decimal;
+    }
+
+    .prose li {
+        @apply mb-2;
+    }
+
+    .prose blockquote {
+        @apply border-l-4 border-accent pl-4 italic my-4 text-muted-foreground;
+    }
+
+    .prose pre {
+        @apply bg-card text-card-foreground p-4 rounded-md shadow-md overflow-x-auto my-4 text-sm font-code;
+    }
+
+    .prose code {
+        /* Inline code */
+        @apply bg-muted text-foreground px-1 py-0.5 rounded-sm font-code text-sm;
+    }
+
+    .prose pre code {
+        /* Code within pre blocks should not have extra background */
+        @apply bg-transparent p-0 rounded-none;
+    }
+
+    .prose hr {
+        @apply border-border my-6;
+    }
+
+    .prose img {
+        @apply rounded-md my-4 shadow-md;
+    }
+
+    .prose table {
+        @apply w-full my-4 border-collapse border border-border;
+    }
+
+    .prose th,
+    .prose td {
+        @apply border border-border px-4 py-2 text-left;
+    }
+
+    .prose th {
+        @apply bg-muted font-semibold;
+    }
+
+    /* Dark mode specifics for prose if needed, current setup relies on prose-invert */
+    .dark .prose {
+        color: hsl(var(--foreground));
+    }
+
+    .dark .prose a {
+        color: hsl(var(--accent));
+    }
+
+    .dark .prose blockquote {
+        border-color: hsl(var(--accent));
+        color: hsl(var(--muted-foreground));
+    }
+
+    .dark .prose pre {
+        background-color: hsl(var(--card));
+        color: hsl(var(--card-foreground));
+    }
+
+    .dark .prose code {
+        /* Inline code for dark */
+        background-color: hsl(var(--muted));
+        color: hsl(var(--foreground));
+    }
+
+    .dark .prose pre code {
+        background-color: transparent;
+    }
+
+    .dark .prose th {
+        background-color: hsl(var(--muted));
+    }
+
+
+}
+
+@layer utilities {
+    @keyframes blink {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+    }
+
+    .blinking-cursor {
+        animation: blink 1s step-end infinite;
+        font-weight: normal;
+        display: inline-block;
+        color: currentColor;
+        font-size: 0.9em;
+        /* Slightly smaller cursor */
+        vertical-align: middle;
+        /* Align cursor with text */
+    }
+
+    @keyframes scroll-horizontal {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-scroll-horizontal {
+        animation: scroll-horizontal 10s linear infinite alternate;
+    }
+
+    .pause-animation-on-hover:hover {
+        animation-play-state: paused;
+    }
+}
